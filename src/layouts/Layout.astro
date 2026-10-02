@@ -15,18 +15,21 @@ const { title } = Astro.props;
 		<style>
 			:root {
 				/* Paleta exacta del tema Arc Dark */
-				--bg-main: #2f343f;        /* Fondo oscuro principal */
-				--bg-header: #242933;      /* Cabecera ligeramente más oscura */
-				--bg-card: #383c4a;        /* Fondo de tarjetas */
+				--bg-main: #2f343f;
+				--bg-header: #242933;
+				--bg-card: #383c4a;
 				
-				--text-main: #d3dae3;      /* Texto general gris claro */
-				--text-heading: #ffffff;   /* Títulos en blanco puro */
+				--text-main: #d3dae3;
+				--text-heading: #ffffff;
 				
-				--accent-blue: #5294e2;    /* Azul característico de Arc */
+				/* Azul original Arc para botones y bordes */
+				--accent-blue: #5294e2; 
+				/* Azul Arc iluminado para dar legibilidad al texto sobre gris */
+				--link-blue: #7cb0f1;   
 				
 				--btn-bg: #5294e2;
 				--btn-hover: #4a85cb;
-				--border-color: #1c1f26;   /* Bordes definidos y oscuros */
+				--border-color: #1c1f26;
 			}
 			
 			body {
@@ -50,9 +53,9 @@ const { title } = Astro.props;
 				margin-bottom: 1rem;
 			}
 
-			/* ENLACES GENERALES: Evita el morado de los visitados */
-			a {
-				color: var(--accent-blue);
+			/* ENLACES GLOBALES: Forzar todas las pseudo-clases para vencer al navegador */
+			a, a:link, a:visited, a:active {
+				color: var(--link-blue);
 				text-decoration: none;
 			}
 			
@@ -61,9 +64,8 @@ const { title } = Astro.props;
 			}
 			
 			/* Excepciones para la cabecera */
-			header a {
-				color: var(--text-main);
-				text-decoration: none;
+			header a, header a:link, header a:visited {
+				color: var(--text-heading);
 			}
 			
 			header a:hover {
@@ -90,7 +92,6 @@ const { title } = Astro.props;
 				padding: 0 1.5rem;
 			}
 			
-			/* Enlace de "Volver al inicio" */
 			main > a {
 				font-weight: 500;
 				display: inline-block;
@@ -115,23 +116,23 @@ const { title } = Astro.props;
 			
 			.card h3 {
 				margin-top: 0;
-				color: var(--text-heading);
 			}
 			
-			.card h3 a {
+			.card h3 a, .card h3 a:link, .card h3 a:visited {
 				color: var(--text-heading);
 			}
 			
 			.card h3 a:hover {
-				color: var(--accent-blue);
+				color: var(--link-blue);
 			}
 			
-			.btn {
+			/* Botones: Asegurar que el texto siempre sea blanco sin importar visitas */
+			.btn, .btn:link, .btn:visited, .btn:active {
 				display: inline-block;
 				background: var(--btn-bg);
-				color: #ffffff !important; /* Fuerza el texto blanco */
+				color: #ffffff !important;
 				padding: 0.6rem 1.2rem;
-				text-decoration: none !important; /* Quita el subrayado */
+				text-decoration: none !important;
 				border-radius: 3px;
 				font-weight: 500;
 				margin-top: 1rem;
