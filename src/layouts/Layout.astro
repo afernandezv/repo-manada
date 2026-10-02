@@ -49,10 +49,25 @@ const { title } = Astro.props;
 				height: auto;
 				margin-bottom: 1rem;
 			}
-			
-			header a {
+
+			/* ENLACES GENERALES: Evita el morado de los visitados */
+			a {
+				color: var(--accent-blue);
 				text-decoration: none;
+			}
+			
+			a:hover {
+				text-decoration: underline;
+			}
+			
+			/* Excepciones para la cabecera */
+			header a {
 				color: var(--text-main);
+				text-decoration: none;
+			}
+			
+			header a:hover {
+				text-decoration: none;
 			}
 			
 			header h1 {
@@ -75,16 +90,11 @@ const { title } = Astro.props;
 				padding: 0 1.5rem;
 			}
 			
+			/* Enlace de "Volver al inicio" */
 			main > a {
-				color: var(--accent-blue);
-				text-decoration: none;
 				font-weight: 500;
 				display: inline-block;
 				margin-bottom: 1.5rem;
-			}
-			
-			main > a:hover {
-				text-decoration: underline;
 			}
 
 			h2 {
@@ -97,10 +107,10 @@ const { title } = Astro.props;
 			.card {
 				background: var(--bg-card);
 				padding: 1.8rem;
-				border-radius: 4px; /* Arc utiliza radios más pequeños/cuadrados */
+				border-radius: 4px;
 				margin-bottom: 1.5rem;
 				border: 1px solid var(--border-color);
-				box-shadow: 0 2px 4px rgba(0,0,0,0.15); /* Sombra muy plana */
+				box-shadow: 0 2px 4px rgba(0,0,0,0.15);
 			}
 			
 			.card h3 {
@@ -110,7 +120,6 @@ const { title } = Astro.props;
 			
 			.card h3 a {
 				color: var(--text-heading);
-				text-decoration: none;
 			}
 			
 			.card h3 a:hover {
@@ -120,10 +129,10 @@ const { title } = Astro.props;
 			.btn {
 				display: inline-block;
 				background: var(--btn-bg);
-				color: #ffffff !important;
+				color: #ffffff !important; /* Fuerza el texto blanco */
 				padding: 0.6rem 1.2rem;
-				text-decoration: none !important;
-				border-radius: 3px; /* Botones más rectangulares */
+				text-decoration: none !important; /* Quita el subrayado */
+				border-radius: 3px;
 				font-weight: 500;
 				margin-top: 1rem;
 				transition: background-color 0.2s ease;
