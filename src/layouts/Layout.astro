@@ -1,0 +1,83 @@
+---
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<title>{title} | Manada Waingunga</title>
+		<style>
+			:root {
+				--primary: #FDB813; /* Amarillo Lobato */
+				--text: #333333;
+				--bg: #f9f9f9;
+			}
+			body {
+				font-family: system-ui, -apple-system, sans-serif;
+				background-color: var(--bg);
+				color: var(--text);
+				margin: 0;
+				padding: 0;
+			}
+			header {
+				background-color: var(--primary);
+				padding: 2rem 1rem;
+				text-align: center;
+				border-bottom: 4px solid #d49800;
+			}
+			header a {
+				text-decoration: none;
+				color: var(--text);
+			}
+			main {
+				max-width: 800px;
+				margin: 2rem auto;
+				padding: 0 1rem;
+			}
+			.card {
+				background: white;
+				padding: 1.5rem;
+				border-radius: 8px;
+				box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+				margin-bottom: 1.5rem;
+			}
+			.btn {
+				display: inline-block;
+				background: #2c3e50;
+				color: white;
+				padding: 0.5rem 1rem;
+				text-decoration: none;
+				border-radius: 4px;
+				font-weight: bold;
+				margin-top: 1rem;
+			}
+			.btn:hover {
+				background: #1a252f;
+			}
+			.tag {
+				background: #eee;
+				padding: 0.2rem 0.5rem;
+				border-radius: 4px;
+				font-size: 0.85rem;
+				color: #666;
+			}
+		</style>
+	</head>
+	<body>
+		<header>
+			<a href="/">
+				<h1>Recursos - Manada Waingunga</h1>
+				<p>Formatos, especialidades y manuales oficiales</p>
+			</a>
+		</header>
+		<main>
+			<slot />
+		</main>
+	</body>
+</html>
