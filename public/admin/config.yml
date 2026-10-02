@@ -1,0 +1,40 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+collections:
+  - name: "formatos"
+    label: "Formatos Oficiales"
+    folder: "src/content/formatos"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Título del Formato", name: "title", widget: "string"}
+      - {label: "Descripción breve", name: "description", widget: "text"}
+      - {label: "Archivo PDF", name: "documento", widget: "file"}
+      - {label: "Cuerpo/Instrucciones", name: "body", widget: "markdown", required: false}
+
+  - name: "especialidades"
+    label: "Plantillas de Especialidades"
+    folder: "src/content/especialidades"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Nombre de Especialidad", name: "title", widget: "string"}
+      - {label: "Área", name: "area", widget: "select", options: ["Deportes", "Ecología", "Expresión", "Humanidades", "Seguridad y Rescate", "Tecnología"]}
+      - {label: "Plantilla PDF/Word", name: "documento", widget: "file"}
+      - {label: "Requisitos", name: "body", widget: "markdown"}
+
+  - name: "manuales"
+    label: "Manuales de App"
+    folder: "src/content/manuales"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Título del Manual", name: "title", widget: "string"}
+      - {label: "Versión de la App", name: "version", widget: "string"}
+      - {label: "Archivo PDF", name: "documento", widget: "file"}
+      - {label: "Guía paso a paso", name: "body", widget: "markdown"}
