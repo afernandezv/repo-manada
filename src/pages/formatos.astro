@@ -1,0 +1,31 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+
+// 1. Aplicamos el tipo AQUÍ arriba, donde es código puro
+const formatos: CollectionEntry<'formatos'>[] = await getCollection('formatos');
+---
+
+<Layout title="Formatos Oficiales">
+	<a href="/">← Volver al inicio</a>
+	<h2>Formatos Oficiales</h2>
+
+	{formatos.length === 0 ? (
+		<p>No hay formatos publicados todavía.</p>
+	) : (
+		/* 2. Aquí abajo lo dejamos normal, Astro ya sabe qué tipo de dato es */
+		formatos.map((formato) => (
+			<div class="card">
+				<h3>{formato.data.title}</h3>
+				<p>{formato.data.description}</p>
+				
+				{formato.data.documento && (
+					<a href={formato.data.documento} target="_blank" class="btn">
+						⬇️️ Descargar PDF
+					</a>
+				)}
+			</div>
+		))
+	)}
+</Layout>

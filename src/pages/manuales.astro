@@ -1,0 +1,28 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+const manuales: CollectionEntry<'manuales'>[] = await getCollection('manuales');
+---
+
+<Layout title="Manuales">
+	<a href="/">← Volver al inicio</a>
+	<h2>Manuales de Usuario</h2>
+
+	{manuales.length === 0 ? (
+		<p>No hay manuales publicados todavía.</p>
+	) : (
+		manuales.map((manual) => (
+			<div class="card">
+				<h3>{manual.data.title}</h3>
+				<span class="tag">Versión: {manual.data.version}</span>
+				
+				{manual.data.documento && (
+					<a href={manual.data.documento} target="_blank" class="btn" style="display: block; width: max-content;">
+						⬇️ Descargar Manual
+					</a>
+				)}
+			</div>
+		))
+	)}
+</Layout>

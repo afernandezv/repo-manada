@@ -1,0 +1,29 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+
+const especialidades: CollectionEntry<'especialidades'>[] = await getCollection('especialidades');
+---
+
+<Layout title="Especialidades">
+	<a href="/">← Volver al inicio</a>
+	<h2>Plantillas de Especialidades</h2>
+
+	{especialidades.length === 0 ? (
+		<p>No hay plantillas publicadas todavía.</p>
+	) : (
+		especialidades.map((esp) => (
+			<div class="card">
+				<h3>{esp.data.title}</h3>
+				<span class="tag">Área: {esp.data.area}</span>
+				
+				{esp.data.documento && (
+					<a href={esp.data.documento} target="_blank" class="btn" style="display: block; width: max-content;">
+						⬇️ Descargar Plantilla
+					</a>
+				)}
+			</div>
+		))
+	)}
+</Layout>
